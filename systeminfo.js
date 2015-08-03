@@ -35,7 +35,6 @@ var SystemInfo = function (verify, ua) {
     this.os = this.getOS();
     this.os.platform = this.getPlatform();
     this.device = this.getDevice();
-
     if (ua === undefined || ua === null || verify) {
         this.verify();
     }
@@ -156,7 +155,7 @@ SystemInfo.prototype = {
             this.userAgent.isFake = true;
             this.browser = new Browser("Firefox", undefined, "Gecko");
         }
-        if (window.chrome && (empty || !/(Chrome|Opera)/.test(ua))) {
+        if (window.chrome && this.browser.name != "Safari" && (empty || !/(Chrome|Opera)/.test(ua))) {
             this.userAgent.isFake = true;
             this.browser = new Browser("Google Chrome", undefined, "WebKit");
         }
