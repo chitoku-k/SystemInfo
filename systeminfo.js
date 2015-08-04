@@ -115,12 +115,12 @@ SystemInfo.prototype = {
         if (match = ua.match(/(Netscape|Firefox)6?\/([\.\d]+)/)) {
             return new Browser(match[1], match[2], "Gecko");
         }
-        if (ua.contains("Safari")) {
-            return new Browser("Safari", this.getSafariVersion(), "WebKit");
-        }
         if (match = ua.match(/(?:Chrome|CriOS)\/([\.\d]+)/)) {
             version = match[1].slice(0, match[1].indexOf(".")) < 28 ? "WebKit" : "Blink";
             return new Browser("Google Chrome", match[1], version);
+        }
+        if (ua.contains("Safari")) {
+            return new Browser("Safari", this.getSafariVersion(), "WebKit");
         }
         if (match = ua.match(/(NetFront)\/([\.\d]+)/)) {
             return new Browser(match[1], match[2]);
